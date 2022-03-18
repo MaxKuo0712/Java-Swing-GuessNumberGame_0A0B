@@ -93,7 +93,7 @@ public class GuessNumberGame extends JFrame {
 		} else {
 			counter++; // 計數器，計算猜第幾輪了
 			inputNum = input.getText(); //取得input的字串
-			log.append(String.format("第%d輪：%s => %s\n", counter. inputNum, cheakAB(inputNum))); // 比對解答與輸入的結果
+			log.append(String.format("第%d輪：%s => %s\n", counter, inputNum, cheakAB(inputNum))); // 比對解答與輸入的結果
 			input.setText(""); // 清空輸入
 			input.requestFocusInWindow(); // 使用父類別Component的requestFocusInWindow，使送出後可以回歸到輸入視窗，目的是輸入游標
 			
@@ -185,7 +185,7 @@ public class GuessNumberGame extends JFrame {
 
 	public static void main(String[] args) {
 		GuessNumberGame game = new GuessNumberGame();
-		game.newGame(5);
+		game.newGame(3);
 	}
 
 }
