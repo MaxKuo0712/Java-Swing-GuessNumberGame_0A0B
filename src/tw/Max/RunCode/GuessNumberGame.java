@@ -197,7 +197,6 @@ public class GuessNumberGame extends JFrame {
 		answer = createAns(gameCount); // 產生隨機答案
 		input.setText(""); // input欄位清空
 		log.setText(""); // log顯示清空
-		System.out.println(answer);
 	}
 	
 	// 設定遊戲要玩幾位數
