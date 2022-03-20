@@ -176,7 +176,7 @@ public class GuessNumberGame extends JFrame {
 		if (isAgain == 0) {
 			newGame();
 		} else {
-			dispose();
+			System.exit(0);
 		}
 	}
 	
@@ -201,40 +201,41 @@ public class GuessNumberGame extends JFrame {
 	
 	// 設定遊戲要玩幾位數
 	private int gameInit() {
-		int gameCount = 0; // 幾位數
-		String input = null; // showInputDialog
+		int gameCount; // 幾位數
+		String input = JOptionPane.showInputDialog("客倌您好，想玩幾位數的？ (最多9位數)");
 		
-		// 如果為null或是""，會問你要不要結束遊戲
-		try {
-			input = JOptionPane.showInputDialog("客倌您好，想玩幾位數的？ (最多9位數)");
-			gameCount = Integer.parseInt(input);
-		} catch (Exception e) {
-			System.out.println(e.toString());
-			// 問你要不要結束遊戲
-			if (isGameOver()) {
-				dispose();
-			} else {
+		// 檢查input的東西 0：null  1：不在0-9範圍內  2：ok  default：重來
+		switch (checkInput(input)) {
+			case 0:
+				int confirm = JOptionPane.showConfirmDialog(null, "客倌，是否要離開遊戲？", "是否要離開？", 0);
+				isGameOver(confirm);
+			case 1:
+				JOptionPane.showMessageDialog(null, "客倌，請輸入1~9的阿拉伯數字哦！");
 				return gameInit();
-			}
+			case 2:
+				gameCount = Integer.parseInt(input);
+				return gameCount;
+			default:
+				return gameInit();
 		}
-		
-		// 看是不是超過9位數，因為遊戲設定是每個數字不重複
-		if (gameCount > 9) {
-			JOptionPane.showMessageDialog(null, "客倌，最多9位數哦！");
-			return gameInit(); // return回原方法再問一次
+	}
+	
+	private int checkInput(String input) {
+		if (input == null) {
+			return 0;
+		} else if (!input.matches("[1-9]")) {
+			return 1;
 		} else {
-			return gameCount;
+			return 2;
 		}
-
 	}
 	
 	// 是否要結束遊戲
-	public boolean isGameOver() {
-		int confirm = JOptionPane.showConfirmDialog(null, "客倌，是否要離開遊戲？", "是否要離開？", 0);
+	private void isGameOver(int confirm) {
 		if (confirm == 0) {
-			return true;
+			System.exit(0);
 		} else {
-			return false;
+			gameInit();
 		}
 	}
 
