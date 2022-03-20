@@ -7,8 +7,6 @@
 2. Java OOP
 3. Java Swing
 
-## 流程圖
-
 ## 遊戲說明-遊戲流程說明
 1. 輸入要玩幾位數(不能超過9位數，因遊戲答案是每個數字不重複)
 <img width="640" alt="2-玩幾位數" src="https://user-images.githubusercontent.com/68499661/159153205-7b418ced-e287-432f-a87a-f1b215b9730a.png">
